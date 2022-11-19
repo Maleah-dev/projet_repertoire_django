@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align:center">Repertoire</h3>
+            <hr>
+            <div class="card card-body">
+                <a href="{% url 'ajouter_contact' %} class="btn btn-primary btn-sm btn-block">Ajouter contact</a>
+                <table class="table table-sm">
+                    <tr>
+                        {% comment %} <th>ID</th> {% endcomment %}
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Numéro</th>
+                        <th>Email</th>
+                        <th>Date création</th>
+                        <th>Détail</th> 
+                        <th>...</th> 
+                    </tr>
+                    {% for contact in contacts %}
+                    <tr>
+                        {% comment %} <th><a href="{% url 'details' contact.pk %}">{{contact.id}}</a></th> {% endcomment %}
+                        <th>{{contact.nom}}</th>
+                        <th>{{contact.prenom}}</th>
+                        <th>{{contact.numéro}}</th>
+                        <th>{{contact.email}}</th>
+                        <th>{{contact.date_creation}}</th>
+                        <th><a class='btn btn-sm btn-success' href="{% url 'details' contact.pk %}">Voir</a></th>
+                        <th><a class='btn btn-sm btn-success' href="{% url 'modifier_contact' contact.pk %}">Modifier</a></th>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+{% endblock %}
+
